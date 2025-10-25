@@ -16,12 +16,12 @@ const CONFIG = {
     // Range of cells to read (A2:C = Team Name, Score, Team Icon URL)
     RANGE: 'A2:C',
     
-    // Display update interval in milliseconds (250 = 0.25 seconds for lightning-fast updates)
-    DISPLAY_UPDATE_INTERVAL: 250,
+    // Display update interval in milliseconds (100 = 0.1 seconds for blink-of-an-eye updates)
+    DISPLAY_UPDATE_INTERVAL: 100,
     
-    // API fetch interval in milliseconds (3000 = 3 seconds to avoid quota limits)
+    // API fetch interval in milliseconds (2500 = 2.5 seconds to avoid quota limits)
     // This is how often we actually call Google Sheets API
-    API_FETCH_INTERVAL: 3000
+    API_FETCH_INTERVAL: 2500
 };
 
 // ============================================
@@ -768,6 +768,6 @@ console.log('Configuration:', {
     'API Key': CONFIG.API_KEY ? '✓ Configured' : '✗ Not configured',
     'Spreadsheet ID': CONFIG.SPREADSHEET_ID ? '✓ Configured' : '✗ Not configured',
     'Sheet Name': CONFIG.SHEET_NAME,
-    'Display Updates': `${CONFIG.DISPLAY_UPDATE_INTERVAL / 1000} seconds (Lightning-fast)`,
+    'Display Updates': `${CONFIG.DISPLAY_UPDATE_INTERVAL / 1000} seconds (Blink-of-an-eye ⚡)`,
     'API Fetch Interval': `${CONFIG.API_FETCH_INTERVAL / 1000} seconds (Quota optimized)`
 });
