@@ -217,7 +217,7 @@ body {
 
 .round-info i {
     color: var(--primary-color);
-    font-size: 1.2rem;
+    font-size: 1.8rem;
 }
 
 .round-label {
@@ -225,7 +225,7 @@ body {
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-size: 0.9rem;
+    font-size: 1.3rem;
 }
 
 .round-selector {
