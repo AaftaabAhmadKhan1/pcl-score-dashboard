@@ -5,20 +5,20 @@
 }
 
 :root {
-    --primary-color: #6366f1;
-    --secondary-color: #8b5cf6;
-    --accent-color: #ec4899;
+    --primary-color: #800020;
+    --secondary-color: #a0153e;
+    --accent-color: #c41e3a;
     --success-color: #10b981;
     --warning-color: #f59e0b;
     --danger-color: #ef4444;
-    --dark-bg: #0f172a;
-    --card-bg: #1e293b;
+    --dark-bg: #2d0a0f;
+    --card-bg: #3d1319;
     --text-primary: #f1f5f9;
-    --text-secondary: #94a3b8;
-    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    --text-secondary: #c9a9ae;
+    --gradient-1: linear-gradient(135deg, #800020 0%, #5c0011 100%);
+    --gradient-2: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
+    --gradient-3: linear-gradient(135deg, #a0153e 0%, #660000 100%);
+    --gradient-4: linear-gradient(135deg, #b22222 0%, #8b0000 100%);
 }
 
 body {
@@ -42,7 +42,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(125deg, #0f172a, #1e293b, #0f172a);
+    background: linear-gradient(125deg, #2d0a0f, #4a1319, #2d0a0f);
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
     z-index: -1;
@@ -87,31 +87,34 @@ body {
 /* Header */
 .header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
+    padding: 30px 50px;
     background: rgba(30, 41, 59, 0.8);
     backdrop-filter: blur(10px);
     border-radius: 12px;
-    margin-bottom: 45px;
+    margin-bottom: 10px;
     border: 1px solid rgba(99, 102, 241, 0.3);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     flex-shrink: 0;
-    gap: 30px;
+    gap: 50px;
     flex-wrap: wrap;
     position: relative;
     z-index: 10;
+    width: 100%;
 }
 
 .logo-section {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 30px;
+    flex: 1;
+    justify-content: center;
 }
 
 .trophy-icon {
-    width: 60px;
-    height: 60px;
+    width: 120px;
+    height: 120px;
     background: var(--gradient-1);
     border-radius: 12px;
     display: flex;
@@ -120,7 +123,15 @@ body {
     font-size: 30px;
     color: white;
     animation: pulse 2s ease-in-out infinite;
-    box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+    box-shadow: 0 0 30px rgba(128, 0, 32, 0.5);
+    overflow: hidden;
+}
+
+.pw-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 8px;
 }
 
 @keyframes pulse {
@@ -135,18 +146,19 @@ body {
 }
 
 .main-title {
-    font-size: 2.5rem;
+    font-size: 10rem;
     font-weight: 800;
     background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     line-height: 1.2;
+    white-space: nowrap;
 }
 
 .subtitle {
-    font-size: 1rem;
+    font-size: 1.8rem;
     color: var(--text-secondary);
     font-weight: 400;
 }
@@ -155,16 +167,16 @@ body {
 .live-indicator {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     background: rgba(239, 68, 68, 0.2);
-    padding: 12px 20px;
+    padding: 18px 30px;
     border-radius: 50px;
     border: 2px solid var(--danger-color);
 }
 
 .live-dot {
-    width: 12px;
-    height: 12px;
+    width: 18px;
+    height: 18px;
     background: var(--danger-color);
     border-radius: 50%;
     animation: blink 1.5s ease-in-out infinite;
@@ -179,8 +191,8 @@ body {
 .live-text {
     font-weight: 700;
     color: var(--danger-color);
-    font-size: 1.1rem;
-    letter-spacing: 1px;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
 }
 
 /* Round Info */
@@ -189,7 +201,7 @@ body {
     padding: 10px 24px;
     background: rgba(99, 102, 241, 0.15);
     border-radius: 10px;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     font-size: 1.1rem;
     color: var(--text-primary);
     display: flex;
@@ -468,10 +480,7 @@ body {
 .score-value {
     font-size: 2.5rem;
     font-weight: 800;
-    background: var(--card-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #3b82f6;
     transition: transform 0.3s ease, filter 0.3s ease;
     line-height: 1;
 }
