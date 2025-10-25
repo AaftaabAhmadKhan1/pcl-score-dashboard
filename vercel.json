@@ -10,6 +10,10 @@
       "dest": "/script.js"
     },
     {
+      "src": "/pw.png",
+      "dest": "/pw.png"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
