@@ -17,7 +17,7 @@ const CONFIG = {
     RANGE: 'A2:C',
     
     // Auto-refresh interval in milliseconds (5000 = 5 seconds to avoid API quota limits)
-    REFRESH_INTERVAL: 3000
+    REFRESH_INTERVAL: 2000
 };
 
 // ============================================
