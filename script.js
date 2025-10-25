@@ -123,7 +123,7 @@ async function loadAvailableSheets() {
             sheetRefreshTimer = setInterval(() => {
                 console.log('Checking for new sheets...');
                 loadAvailableSheets();
-            }, 3000); // Check every 30 seconds
+            }, 30000); // Check every 30 seconds
         }
         
     } catch (error) {
