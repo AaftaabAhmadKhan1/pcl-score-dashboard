@@ -16,8 +16,8 @@ const CONFIG = {
     // Range of cells to read (A2:C = Team Name, Score, Team Icon URL)
     RANGE: 'A2:C',
     
-    // Auto-refresh interval in milliseconds (2000 = 2 seconds for near real-time updates)
-    REFRESH_INTERVAL: 2000
+    // Auto-refresh interval in milliseconds (5000 = 5 seconds to avoid API quota limits)
+    REFRESH_INTERVAL: 5000
 };
 
 // ============================================
@@ -118,12 +118,12 @@ async function loadAvailableSheets() {
             }
         }
         
-        // Start automatic sheet refresh (check every 10 seconds)
+        // Start automatic sheet refresh (check every 30 seconds to reduce API calls)
         if (!sheetRefreshTimer) {
             sheetRefreshTimer = setInterval(() => {
                 console.log('Checking for new sheets...');
                 loadAvailableSheets();
-            }, 10000); // Check every 10 seconds
+            }, 30000); // Check every 30 seconds
         }
         
     } catch (error) {
@@ -679,7 +679,7 @@ document.addEventListener('visibilitychange', function() {
         sheetRefreshTimer = setInterval(() => {
             console.log('Checking for new sheets...');
             loadAvailableSheets();
-        }, 10000);
+        }, 30000);
     }
 });
 
