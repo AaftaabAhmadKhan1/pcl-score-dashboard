@@ -672,17 +672,26 @@ body {
     }
     
     .header {
-        flex-direction: row;
-        gap: 8px;
-        padding: 10px;
+        flex-direction: column;
+        gap: 12px;
+        padding: 15px 10px;
+        align-items: center;
     }
 
     .main-title {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
+        white-space: normal;
+        word-wrap: break-word;
+        text-align: center;
     }
     
     .subtitle {
-        font-size: 0.65rem;
+        font-size: 0.75rem;
+    }
+
+    .header-text {
+        text-align: center;
+        flex: 1;
     }
     
     .round-info {
@@ -699,8 +708,10 @@ body {
     }
 
     .logo-section {
-        flex-direction: row;
-        gap: 8px;
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+        width: 100%;
     }
     
     .trophy-icon {
