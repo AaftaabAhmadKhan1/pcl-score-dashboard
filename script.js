@@ -17,7 +17,7 @@ const CONFIG = {
     RANGE: 'A2:C',
     
     // Auto-refresh interval in milliseconds (5000 = 5 seconds to avoid API quota limits)
-    REFRESH_INTERVAL: 1500
+    REFRESH_INTERVAL: 2000
 };
 
 // ============================================
@@ -123,7 +123,7 @@ async function loadAvailableSheets() {
             sheetRefreshTimer = setInterval(() => {
                 console.log('Checking for new sheets...');
                 loadAvailableSheets();
-            }, 30000); // Check every 30 seconds
+            }, 2000); // Check every 30 seconds
         }
         
     } catch (error) {
