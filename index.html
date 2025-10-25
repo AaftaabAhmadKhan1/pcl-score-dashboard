@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PW Champions League - Live Scoreboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="logo-section">
+                <div class="trophy-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div class="header-text">
+                    <h1 class="main-title">PW Champions League</h1>
+                    <p class="subtitle">Live Score Dashboard</p>
+                </div>
+            </div>
+            <div class="live-indicator">
+                <span class="live-dot"></span>
+                <span class="live-text">LIVE</span>
+            </div>
+        </header>
+
+        <!-- Round Name with Dropdown -->
+        <div class="round-info">
+            <i class="fas fa-trophy"></i>
+            <span class="round-label">Round:</span>
+            <select class="round-selector" id="sheetSelector" onchange="changeSheet()">
+                <option value="">Loading sheets...</option>
+            </select>
+        </div>
+
+        <!-- Last Updated Time -->
+        <div class="update-info">
+            <i class="fas fa-sync-alt"></i>
+            <span>Last Updated: <span id="lastUpdate">--</span></span>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Loading scores...</p>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error" class="error-message" style="display: none;">
+            <i class="fas fa-exclamation-circle"></i>
+            <p id="errorText"></p>
+        </div>
+
+        <!-- Scoreboard Section -->
+        <div id="scoreboard" class="scoreboard">
+            <!-- Team cards will be dynamically inserted here -->
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>PW Champions League © 2025</p>
+        </footer>
+    </div>
+
+    <!-- Configuration Modal (Optional) -->
+    <div id="configModal" class="modal">
+        <div class="modal-content">
+            <h2>Configure Google Sheets</h2>
+            <p>To connect your Google Sheet, please update the configuration in <code>script.js</code></p>
+            <div class="config-info">
+                <p><strong>Required:</strong></p>
+                <ul>
+                    <li>Google Sheets API Key</li>
+                    <li>Spreadsheet ID</li>
+                    <li>Sheet Name</li>
+                </ul>
+            </div>
+            <button onclick="closeConfigModal()" class="btn-close">Close</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
