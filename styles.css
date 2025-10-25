@@ -253,31 +253,6 @@ body {
     font-size: 1.2rem;
 }
 
-/* Update Info */
-.update-info {
-    text-align: center;
-    padding: 5px;
-    background: rgba(30, 41, 59, 0.6);
-    border-radius: 8px;
-    margin-bottom: 6px;
-    font-size: 0.7rem;
-    color: var(--text-secondary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    flex-shrink: 0;
-}
-
-.update-info i {
-    animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
 /* Loading */
 .loading {
     text-align: center;
@@ -755,11 +730,6 @@ body {
     
     .live-text {
         font-size: 0.8rem;
-    }
-    
-    .update-info {
-        font-size: 0.65rem;
-        padding: 5px;
     }
     
     .footer {

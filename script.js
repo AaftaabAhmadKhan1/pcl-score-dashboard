@@ -25,7 +25,6 @@ const CONFIG = {
 // ============================================
 
 let refreshTimer = null;
-let lastUpdateTime = null;
 let previousScores = {}; // Track previous scores for change detection
 let availableSheets = []; // Store available sheet names
 let sheetRefreshTimer = null; // Timer for refreshing sheet list
@@ -260,14 +259,6 @@ async function loadScores(showErrors = false) {
         
         // Process and display the scores
         processScores(data.values);
-        
-        // Update last update time
-        updateLastUpdateTime();
-        
-        // Reset loading indicator color
-        if (updateInfo) {
-            updateInfo.style.color = '';
-        }
         
         // Hide loading, show scoreboard
         const loadingEl = document.getElementById('loading');
@@ -587,24 +578,6 @@ function stopAutoRefresh() {
 // ============================================
 // Utility Functions
 // ============================================
-
-function updateLastUpdateTime() {
-    try {
-        lastUpdateTime = new Date();
-        const timeString = lastUpdateTime.toLocaleTimeString('en-US', {
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit'
-        });
-        
-        const lastUpdateEl = document.getElementById('lastUpdate');
-        if (lastUpdateEl) {
-            lastUpdateEl.textContent = timeString;
-        }
-    } catch (error) {
-        console.error('Error updating last update time:', error);
-    }
-}
 
 function showError(message) {
     try {
