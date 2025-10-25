@@ -81,7 +81,7 @@ body {
     z-index: 1;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow: visible;
 }
 
 /* Header */
@@ -93,12 +93,14 @@ body {
     background: rgba(30, 41, 59, 0.8);
     backdrop-filter: blur(10px);
     border-radius: 12px;
-    margin-bottom: 35px;
+    margin-bottom: 45px;
     border: 1px solid rgba(99, 102, 241, 0.3);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     flex-shrink: 0;
     gap: 30px;
     flex-wrap: wrap;
+    position: relative;
+    z-index: 10;
 }
 
 .logo-section {
@@ -187,7 +189,7 @@ body {
     padding: 10px 24px;
     background: rgba(99, 102, 241, 0.15);
     border-radius: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     font-size: 1.1rem;
     color: var(--text-primary);
     display: flex;
@@ -197,6 +199,8 @@ body {
     flex-shrink: 0;
     border: 1px solid rgba(99, 102, 241, 0.3);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 10;
 }
 
 .round-info i {
@@ -292,9 +296,11 @@ body {
     gap: 15px;
     flex: 1;
     align-content: start;
-    overflow: hidden;
+    overflow: visible;
     padding: 0;
     height: 100%;
+    position: relative;
+    z-index: 1;
 }
 
 /* Remove custom scrollbar styles since we're not scrolling */
@@ -320,29 +326,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
-}
-
-.team-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: var(--gradient-1);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
-}
-
-.team-card:hover::before {
-    transform: scaleX(1);
-}
-
-.team-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-    border-color: var(--primary-color);
+    z-index: 5;
 }
 
 .team-card:nth-child(1) { --card-gradient: var(--gradient-1); }
@@ -353,7 +337,27 @@ body {
 .team-card:nth-child(6) { --card-gradient: var(--gradient-2); }
 
 .team-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
     background: var(--card-gradient);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    z-index: 1;
+}
+
+.team-card:hover::before {
+    transform: scaleX(1);
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    border-color: var(--primary-color);
 }
 
 .team-rank {
@@ -372,6 +376,7 @@ body {
     color: white;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     overflow: hidden;
+    z-index: 2;
 }
 
 .team-icon {
@@ -398,6 +403,8 @@ body {
     margin-bottom: 18px;
     padding-right: 55px;
     flex: 1;
+    position: relative;
+    z-index: 2;
 }
 
 .team-name {
@@ -447,6 +454,8 @@ body {
     margin-top: auto;
     padding-top: 18px;
     border-top: 1px solid rgba(148, 163, 184, 0.2);
+    position: relative;
+    z-index: 2;
 }
 
 .score-label {
