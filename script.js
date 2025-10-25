@@ -16,8 +16,12 @@ const CONFIG = {
     // Range of cells to read (A2:C = Team Name, Score, Team Icon URL)
     RANGE: 'A2:C',
     
-    // Auto-refresh interval in milliseconds (5000 = 5 seconds to avoid API quota limits)
-    REFRESH_INTERVAL: 3000
+    // Display update interval in milliseconds (1000 = 1 second for instant feel)
+    DISPLAY_UPDATE_INTERVAL: 1000,
+    
+    // API fetch interval in milliseconds (3000 = 3 seconds to avoid quota limits)
+    // This is how often we actually call Google Sheets API
+    API_FETCH_INTERVAL: 3000
 };
 
 // ============================================
@@ -25,10 +29,13 @@ const CONFIG = {
 // ============================================
 
 let refreshTimer = null;
+let apiFetchTimer = null; // Timer for actual API calls
 let previousScores = {}; // Track previous scores for change detection
 let availableSheets = []; // Store available sheet names
 let sheetRefreshTimer = null; // Timer for refreshing sheet list
 let isInitialLoad = true; // Track if this is the first load
+let cachedData = null; // Cache the last fetched data
+let lastApiCallTime = 0; // Track when we last called the API
 
 // ============================================
 // Initialize the Dashboard
@@ -222,6 +229,10 @@ async function loadScores(showErrors = false) {
         }
         
         const data = await response.json();
+        
+        // Cache the data for display updates
+        cachedData = data;
+        lastApiCallTime = Date.now();
         
         console.log('=== RAW DATA FROM GOOGLE SHEETS ===');
         console.log('Full data object:', data);
@@ -546,18 +557,32 @@ function updateTeamCard(card, team, rank) {
 
 function startAutoRefresh() {
     try {
+        // Stop any existing timers
         if (refreshTimer) {
             clearInterval(refreshTimer);
         }
+        if (apiFetchTimer) {
+            clearInterval(apiFetchTimer);
+        }
         
-        refreshTimer = setInterval(() => {
-            console.log('Auto-refreshing scores...');
-            loadScores(false).catch(error => { // Pass false to not show errors on background refresh
-                console.error('Error in auto-refresh:', error);
+        // Timer for actual API calls (less frequent to avoid quota)
+        apiFetchTimer = setInterval(() => {
+            console.log('Fetching fresh data from API...');
+            loadScores(false).catch(error => {
+                console.error('Error in API fetch:', error);
             });
-        }, CONFIG.REFRESH_INTERVAL);
+        }, CONFIG.API_FETCH_INTERVAL);
         
-        console.log(`Auto-refresh started: ${CONFIG.REFRESH_INTERVAL / 1000}s interval`);
+        // Timer for display updates (every 1 second for instant feel)
+        // This re-processes cached data without making API calls
+        refreshTimer = setInterval(() => {
+            if (cachedData && cachedData.values) {
+                // Process cached data to update the display
+                processScores(cachedData.values);
+            }
+        }, CONFIG.DISPLAY_UPDATE_INTERVAL);
+        
+        console.log(`Display updates: ${CONFIG.DISPLAY_UPDATE_INTERVAL / 1000}s | API calls: ${CONFIG.API_FETCH_INTERVAL / 1000}s`);
     } catch (error) {
         console.error('Error starting auto-refresh:', error);
     }
@@ -568,8 +593,12 @@ function stopAutoRefresh() {
         if (refreshTimer) {
             clearInterval(refreshTimer);
             refreshTimer = null;
-            console.log('Auto-refresh stopped');
         }
+        if (apiFetchTimer) {
+            clearInterval(apiFetchTimer);
+            apiFetchTimer = null;
+        }
+        console.log('Auto-refresh stopped');
     } catch (error) {
         console.error('Error stopping auto-refresh:', error);
     }
@@ -739,5 +768,6 @@ console.log('Configuration:', {
     'API Key': CONFIG.API_KEY ? '✓ Configured' : '✗ Not configured',
     'Spreadsheet ID': CONFIG.SPREADSHEET_ID ? '✓ Configured' : '✗ Not configured',
     'Sheet Name': CONFIG.SHEET_NAME,
-    'Refresh Interval': `${CONFIG.REFRESH_INTERVAL / 1000} seconds (Near Real-time)`
+    'Display Updates': `${CONFIG.DISPLAY_UPDATE_INTERVAL / 1000} second (Instant feel)`,
+    'API Fetch Interval': `${CONFIG.API_FETCH_INTERVAL / 1000} seconds (Quota optimized)`
 });
